@@ -127,6 +127,35 @@ npm run start:full
 
 Then open: http://localhost:5000
 
+## Docker Deployment
+
+This repo can run with Docker on EC2. The backend serves the built frontend from `frontend/dist`, so the container builds the React app and starts the Node server.
+
+1. Copy the example env file.
+
+```bash
+cp .env.example .env
+```
+
+2. Update `.env` with real secrets and cloud values.
+
+3. Start the containers.
+
+```bash
+docker compose up -d --build
+```
+
+4. Check the app.
+
+```bash
+docker compose ps
+docker compose logs -f app
+```
+
+5. Open the app on port `5000`, or put Nginx in front of it on port `80`.
+
+If you want MySQL outside Docker instead, remove the `db` service from `docker-compose.yml` and point `DB_HOST` to your external database server.
+
 ## Google Sheets Setup
 
 1. Enable Google Sheets API in Google Cloud.
