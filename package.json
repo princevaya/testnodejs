@@ -1,0 +1,42 @@
+{
+  "name": "smart-complaint-management-system",
+  "version": "1.0.0",
+  "description": "Smart Complaint Management System backend with Node.js, Express, MySQL, JWT, Google Sheets, and email notifications",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "dev:backend": "nodemon src/server.js",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:full": "concurrently -n backend,frontend -c yellow,cyan \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "build:frontend": "npm --prefix frontend run build",
+    "start": "node src/server.js",
+    "start:full": "npm run build:frontend && node src/server.js"
+  },
+  "keywords": [
+    "complaint",
+    "express",
+    "mysql",
+    "google-sheets",
+    "jwt"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-validator": "^7.2.1",
+    "googleapis": "^144.0.0",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "multer": "^2.0.2",
+    "mysql2": "^3.11.3",
+    "nodemailer": "^6.9.15"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.7"
+  }
+}

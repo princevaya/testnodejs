@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Complaint Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+
+    <header class="shell-header">
+      <h1>Smart Complaint Management System</h1>
+      <p>Fast reporting, smart routing, clear ownership.</p>
+    </header>
+
+    <main class="shell-main">
+      <section id="authCard" class="card auth-card">
+        <div class="auth-switch">
+          <button id="showLogin" class="chip chip-active" type="button">Login</button>
+          <button id="showRegister" class="chip" type="button">Register</button>
+        </div>
+
+        <form id="loginForm" class="form-grid">
+          <h2>Welcome Back</h2>
+          <label>
+            Email
+            <input name="email" type="email" required />
+          </label>
+          <label>
+            Password
+            <input name="password" type="password" required />
+          </label>
+          <button type="submit" class="btn btn-primary">Sign In</button>
+        </form>
+
+        <form id="registerForm" class="form-grid hidden">
+          <h2>Create Account</h2>
+          <label>
+            Name
+            <input name="name" type="text" required />
+          </label>
+          <label>
+            Email
+            <input name="email" type="email" required />
+          </label>
+          <label>
+            Password
+            <input name="password" type="password" minlength="6" required />
+          </label>
+          <label>
+            Role
+            <select name="role" id="registerRole">
+              <option value="User">User</option>
+              <option value="Staff">Staff</option>
+              <option value="Admin">Admin</option>
+            </select>
+          </label>
+          <label id="departmentWrap" class="hidden">
+            Department
+            <input name="department" type="text" placeholder="Electrical / Network / General" />
+          </label>
+          <button type="submit" class="btn btn-primary">Create Account</button>
+        </form>
+      </section>
+
+      <section id="appPanel" class="hidden">
+        <div class="card topbar">
+          <div>
+            <h2 id="userWelcome"></h2>
+            <p id="userMeta"></p>
+          </div>
+          <button id="logoutBtn" class="btn">Logout</button>
+        </div>
+
+        <div id="userPanel" class="panel hidden">
+          <div class="grid two-col">
+            <section class="card">
+              <h3>Submit Complaint</h3>
+              <form id="complaintForm" class="form-grid" enctype="multipart/form-data">
+                <label>
+                  Title
+                  <input name="title" required />
+                </label>
+                <label>
+                  Description
+                  <textarea name="description" rows="5" required></textarea>
+                </label>
+                <label>
+                  Building
+                  <select name="building" required>
+                    <option value="">Select building</option>
+                    <option>A Block</option>
+                    <option>B Block</option>
+                    <option>C Block</option>
+                    <option>Library</option>
+                    <option>Lab Complex</option>
+                  </select>
+                </label>
+                <label>
+                  Floor
+                  <select name="floor" required>
+                    <option value="">Select floor</option>
+                    <option>Ground</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                  </select>
+                </label>
+                <label>
+                  Room
+                  <select name="room" required>
+                    <option value="">Select room</option>
+                    <option>101</option>
+                    <option>102</option>
+                    <option>103</option>
+                    <option>201</option>
+                    <option>202</option>
+                    <option>203</option>
+                    <option>301</option>
+                    <option>302</option>
+                    <option>Lab-1</option>
+                    <option>Lab-2</option>
+                  </select>
+                </label>
+                <label>
+                  Image (Optional)
+                  <input name="image" type="file" accept="image/*" />
+                </label>
+                <button type="submit" class="btn btn-primary">Create Complaint</button>
+              </form>
+            </section>
+
+            <section class="card">
+              <h3>My Complaints</h3>
+              <div id="myComplaints" class="table-wrap"></div>
+            </section>
+          </div>
+        </div>
+
+        <div id="adminPanel" class="panel hidden">
+          <section class="card">
+            <h3>Dashboard Summary</h3>
+            <div id="dashboardStats" class="stat-grid"></div>
+            <div id="dashboardMeta" class="grid two-col"></div>
+          </section>
+
+          <section class="card">
+            <h3>All Complaints</h3>
+            <form id="filterForm" class="inline-form">
+              <select name="status">
+                <option value="">All Status</option>
+                <option>Pending</option>
+                <option>In Progress</option>
+                <option>Resolve Requested</option>
+                <option>Resolved</option>
+              </select>
+              <select name="category">
+                <option value="">All Category</option>
+                <option>Network</option>
+                <option>Plumbing</option>
+                <option>Electrical</option>
+                <option>General</option>
+              </select>
+              <select name="priority">
+                <option value="">All Priority</option>
+                <option>High</option>
+                <option>Medium</option>
+                <option>Low</option>
+              </select>
+              <button class="btn" type="submit">Apply</button>
+            </form>
+            <div id="allComplaints" class="table-wrap"></div>
+          </section>
+        </div>
+
+        <div id="staffPanel" class="panel hidden">
+          <section class="card">
+            <h3>Assigned Complaints</h3>
+            <div id="staffComplaints" class="table-wrap"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast hidden"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>
